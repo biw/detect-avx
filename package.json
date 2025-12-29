@@ -1,0 +1,58 @@
+{
+  "name": "detect-avx",
+  "version": "0.0.1",
+  "packageManager": "yarn@4.6.0",
+  "description": "Detect AVX instruction set support on Intel processors",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "prebuilds"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "build:native": "node-gyp rebuild",
+    "clean": "node-gyp clean && rm -rf dist",
+    "lint": "tsc --noEmit",
+    "prebuild": "prebuildify --napi --strip",
+    "test": "vitest run",
+    "prepublishOnly": "yarn build"
+  },
+  "keywords": [
+    "avx",
+    "avx2",
+    "cpu",
+    "simd",
+    "intel",
+    "native",
+    "addon",
+    "napi"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biw/detect-avx.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "node-addon-api": "^8.0.0",
+    "node-gyp-build": "^4.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "node-gyp": "^12.1.0",
+    "prebuildify": "^6.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^3.0.0"
+  }
+}
