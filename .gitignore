@@ -3,11 +3,8 @@ build/
 dist/
 *.node
 package-lock.json
+pnpm-debug.log*
 detectAvx.exe
 *.tsbuildinfo
 .DS_Store
-
-# Yarn
-.yarn/cache
-.yarn/install-state.gz
-.pnp.*
+.context/

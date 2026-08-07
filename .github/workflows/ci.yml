@@ -29,31 +29,32 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Vite+
+        uses: voidzero-dev/setup-vp@v1.17.0
         with:
-          node-version: 22
-
-      - name: Enable Corepack
-        run: corepack enable
+          node-version: "24"
+          cache: true
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: vp install --frozen-lockfile
+
+      - name: Check formatting, lint, and types
+        run: vp check
 
       - name: Build TypeScript
-        run: yarn build
+        run: vp pack
 
       - name: Build native addon
-        run: yarn build:native
+        run: vp run build:native
 
       - name: Run tests
-        run: yarn test
+        run: vp test
 
       - name: Display AVX detection result
-        run: yarn node -e "import('./dist/index.js').then(m => console.log('AVX Support:', m.default()))"
+        run: vp node -e "import('./dist/index.js').then(m => console.log('AVX Support:', m.default()))"
 
       - name: Create prebuild
-        run: yarn prebuild
+        run: vp run prebuild
 
       - name: Upload prebuild artifact
         uses: actions/upload-artifact@v4

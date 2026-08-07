@@ -9,8 +9,11 @@ A Node.js package for detecting AVX instruction set support on x86 processors.
 ## Installation
 
 ```sh
-yarn add detect-avx
+pnpm add detect-avx
 ```
+
+> [!TIP]
+> Building a Vite app? **[vite-plugin-native-modules](https://github.com/biw/vite-plugin-native-modules)** handles `detect-avx` automatically.
 
 ## Usage
 

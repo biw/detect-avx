@@ -10,9 +10,7 @@ interface NativeAddon {
 }
 
 // Load the native addon using node-gyp-build
-const addon: NativeAddon = require("node-gyp-build")(
-  path.join(__dirname, "..")
-);
+const addon: NativeAddon = require("node-gyp-build")(path.join(__dirname, ".."));
 
 /**
  * Detects AVX instruction set support on the current CPU.
