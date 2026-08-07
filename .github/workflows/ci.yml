@@ -61,3 +61,12 @@ jobs:
           name: prebuild-${{ matrix.os }}-${{ matrix.arch }}
           path: prebuilds/
           retention-days: 7
+
+  publish:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/publish.yml
+    permissions:
+      actions: read
+      contents: write
+      id-token: write
