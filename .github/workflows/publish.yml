@@ -44,11 +44,12 @@ jobs:
 
           echo "is_current=true" >> "$GITHUB_OUTPUT"
 
-      - name: Setup Node.js
+      - name: Setup Vite+
         if: steps.revision.outputs.is_current == 'true'
-        uses: actions/setup-node@v7
+        uses: voidzero-dev/setup-vp@v1.17.0
         with:
-          node-version: '24'
+          node-version: "24"
+          cache: false
 
       - name: Check if version should be published
         if: steps.revision.outputs.is_current == 'true'
@@ -89,15 +90,11 @@ jobs:
         with:
           ref: ${{ github.sha }}
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
+      - name: Setup Vite+
+        uses: voidzero-dev/setup-vp@v1.17.0
         with:
-          node-version: '24'
-          registry-url: 'https://registry.npmjs.org'
-          package-manager-cache: false
-
-      - name: Enable Corepack
-        run: corepack enable
+          node-version: "24"
+          cache: false
 
       - name: Download CI prebuild artifacts
         uses: actions/download-artifact@v4
@@ -113,10 +110,10 @@ jobs:
           done
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: vp install --frozen-lockfile
 
       - name: Build package
-        run: yarn build
+        run: vp pack
 
       - name: Verify npm supports trusted publishing
         run: |
