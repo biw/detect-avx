@@ -1,6 +1,6 @@
 {
   "name": "detect-avx",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Detect AVX instruction set support on Intel processors",
   "keywords": [
     "addon",
